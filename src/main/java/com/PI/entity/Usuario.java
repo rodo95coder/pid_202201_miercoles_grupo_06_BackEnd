@@ -22,28 +22,36 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "departamento")
-public class Departamento {
-	
+@Table(name = "usuario")
+public class Usuario {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int iddepartamento;
-	private String nombre;
-	private String descripcion;
-	private String precio;
-	
-	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idedificio")
-	private Edificio edificio;
-	
-	@Temporal(TemporalType.DATE)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-	private Date fechaVigencia;
-	
+	private int idUsuario;
+	private String nombres;
+	private String apellidos;
+	private String dni;
+	private String login;
+	private String password;
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
 	private Date fechaRegistro;
 
+	private String direccion;
+	
+	@Temporal(TemporalType.DATE)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd" , timezone = "America/Lima")
+	private Date fechaNacimiento;
+	
+	private int estado;
 
+	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idUbigeo")
+	private Ubigeo ubigeo;
+
+	public String getNombreCompleto() {
+		return nombres.concat(" ").concat(apellidos);
+	}
 }

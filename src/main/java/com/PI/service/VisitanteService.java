@@ -2,16 +2,12 @@ package com.PI.service;
 
 import java.util.List;
 
-import com.PI.entity.Visitantes;
-
-
-
-
+import com.PI.entity.Visitante;
 
 public interface VisitanteService {
 	
-	public abstract List<Visitantes> listaVisitantes();
+	public List<Visitante> listaVisitante();
+	
+	public Visitante insertaVisitante(Visitante obj);
 
-	public abstract Visitantes insertaVisitante(Visitantes obj);
-	public abstract Visitantes insertaActualizaVisi(Visitantes obj);
 }
